@@ -1,0 +1,16 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.17.2
+    container_name: elasticsearch-8.17.2
+    restart: always
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - ELASTIC_USERNAME=admin
+      - ELASTIC_PASSWORD=admin
+      - "cluster.routing.allocation.disk.threshold_enabled=false"
+      - "node.roles=[data, master, ingest]"
+    ports:
+      - 9200:9200
